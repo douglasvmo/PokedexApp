@@ -6,13 +6,13 @@
  * @flow strict-local
  */
 
-import React, {useEffect} from 'react';
+import React from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import Navigator from './navigation/navigator';
 import {Provider as PaperProvider} from 'react-native-paper';
 
 const App = () => {
-  useEffect(() => {
+  React.useEffect(() => {
     SplashScreen.hide();
   }, []);
 

@@ -8,19 +8,16 @@
 
 import React, {useEffect} from 'react';
 import type {Node} from 'react';
-import {Text, View} from 'react-native';
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
+import Navigator from './navigation/navigator';
 
 const App: () => Node = () => {
-
   useEffect(() => {
     SplashScreen.hide();
-  }, [SplashScreen])
+  }, [SplashScreen]);
 
   return (
-    <View>
-      <Text>Pokedex App</Text>
-    </View>
+    <Navigator />
   );
 };
 

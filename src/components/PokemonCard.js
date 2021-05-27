@@ -1,14 +1,23 @@
 import React from 'react';
-import {Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
+import {Avatar, Card} from 'react-native-paper';
+import * as S from './styles';
+import * as RootNavigation from '../navigation/rootNavigation';
+
+const RightContent = props => <Avatar.Icon {...props} icon="arrow-right" />;
 
 const PokemonCard = ({pokemon}) => {
+  const handlePressCard = () => {
+    RootNavigation.navigate('Details', pokemon);
+  };
+
   return (
-    <Card>
-      <Card.Title title={pokemon.name} />
-      <Card.Actions>
-        <Button>View</Button>
-      </Card.Actions>
-    </Card>
+    <S.PokemonCard
+      accessible={true}
+      onPress={handlePressCard}
+      Type="elevated"
+      elevation={2}>
+      <Card.Title title={pokemon.name} right={RightContent} />
+    </S.PokemonCard>
   );
 };
 

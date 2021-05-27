@@ -1,15 +1,31 @@
 import React from 'react';
 import axios from 'axios';
 import {enviroment} from '../commons/Constants';
+import {useState} from 'react';
 
 const request = axios.create({
   timeout: 1000,
 });
 
-const usePokemons = () => {
+const usePokemons = url => {
   const [pokemonList, setPokemonList] = React.useState([]);
+  const [pokemon, setPokemon] = React.useState();
   const [nextPage, setNextPage] = React.useState();
   const [loading, setLoading] = React.useState(false);
+  const [error, setError] = useState();
+
+  React.useEffect(() => {
+    handleRequestType();
+    console.log('useEffect was executed');
+  }, [requestPokemonList]);
+
+  const handleRequestType = React.useCallback(() => {
+    if (url) {
+      requestPokemonDetails();
+    } else {
+      requestPokemonList();
+    }
+  }, [url, requestPokemonDetails, requestPokemonList]);
 
   const requestPokemonList = React.useCallback(() => {
     setLoading(true);
@@ -20,10 +36,7 @@ const usePokemons = () => {
         setNextPage(data.next);
         setPokemonList(prev => [...prev, ...data.results]);
       })
-      .catch(error => {
-        setLoading(false);
-        console.log('print error: ', error);
-      });
+      .catch(handleError);
   }, [request, enviroment]);
 
   const requestNextPage = () => {
@@ -35,23 +48,35 @@ const usePokemons = () => {
         setNextPage(data.next);
         setPokemonList(prev => [...prev, ...data.results]);
       })
-      .catch(error => {
-        setLoading(false);
-        console.log('print error: ', error)
-      });
+      .catch(handleError);
   };
 
-  React.useEffect(() => {
-    requestPokemonList();
-  }, [requestPokemonList]);
+  const requestPokemonDetails = React.useCallback(() => {
+    setLoading(true);
+    request
+      .get(url)
+      .then(({data}) => {
+        setLoading(false);
+        setPokemon(data);
+      })
+      .catch(handleError);
+  }, [request, enviroment]);
+
+  const handleError = error => {
+    setLoading(false);
+    setError(error.toString());
+  };
 
   return {
     pokemonData: {
       pokemonList,
-      loading
+      pokemon,
+      loading,
+      error,
     },
     pokemonFunctions: {
       requestNextPage,
+      requestPokemonDetails,
     },
   };
 };

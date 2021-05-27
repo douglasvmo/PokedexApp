@@ -7,15 +7,14 @@
  */
 
 import React, {useEffect} from 'react';
-import type {Node} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import Navigator from './navigation/navigator';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-const App: () => Node = () => {
+const App = () => {
   useEffect(() => {
     SplashScreen.hide();
-  }, [SplashScreen]);
+  }, []);
 
   return (
     <PaperProvider>

@@ -10,6 +10,7 @@ import React, {useEffect} from 'react';
 import type {Node} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import Navigator from './navigation/navigator';
+import {Provider as PaperProvider} from 'react-native-paper';
 
 const App: () => Node = () => {
   useEffect(() => {
@@ -17,7 +18,9 @@ const App: () => Node = () => {
   }, [SplashScreen]);
 
   return (
-    <Navigator />
+    <PaperProvider>
+      <Navigator />
+    </PaperProvider>
   );
 };
 

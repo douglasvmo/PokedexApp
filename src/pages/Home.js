@@ -4,7 +4,7 @@ import {Snackbar, ActivityIndicator} from 'react-native-paper';
 import usePokemons from '../hooks/usePokemons';
 import PokemonCard from '../components/PokemonCard';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [showMessageError, setShowMessageError] = React.useState(false);
   const {pokemonData, pokemonFunctions} = usePokemons();
 
@@ -20,13 +20,17 @@ const Home = () => {
     return <ActivityIndicator animating={true} />;
   };
 
+  const handlePressCard = (pokemon) => {
+    navigation.navigate('Details', pokemon)
+  }
+
   return (
     <React.Fragment>
       <SafeAreaView>
         <FlatList
           data={pokemonData.pokemonList}
           renderItem={({item}) => {
-            return <PokemonCard pokemon={item} />;
+            return <PokemonCard pokemon={item} handlePressCard={handlePressCard}/>;
           }}
           keyExtractor={(item, index) => item.name + index.toString()}
           onEndReached={pokemonFunctions.requestNextPage}

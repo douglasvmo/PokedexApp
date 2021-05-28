@@ -1,29 +1,21 @@
 import React from 'react';
 import {Avatar, Card} from 'react-native-paper';
 import * as S from '../styles/styles';
-import * as RootNavigation from '../navigation/rootNavigation';
+import {pure} from 'recompose';
 
 const RightContent = props => <Avatar.Icon {...props} icon="arrow-right" />;
 
-const PokemonCard = ({pokemon}) => {
+const PokemonCard = ({pokemon, handlePressCard}) => (
+  <S.PokemonCard
+    onPress={() => handlePressCard(pokemon)}
+    Type="elevated"
+    elevation={2}>
+    <Card.Title
+      titleStyle={{textTransform: 'capitalize'}}
+      title={pokemon.name}
+      right={RightContent}
+    />
+  </S.PokemonCard>
+);
 
-  const handlePressCard = () => {
-    RootNavigation.navigate('Details', pokemon);
-  };
-
-  return (
-    <S.PokemonCard
-      accessible={true}
-      onPress={handlePressCard}
-      Type="elevated"
-      elevation={2}>
-      <Card.Title
-        titleStyle={{textTransform: 'capitalize'}}
-        title={pokemon.name}
-        right={RightContent}
-      />
-    </S.PokemonCard>
-  );
-};
-
-export default PokemonCard;
+export default pure(PokemonCard);

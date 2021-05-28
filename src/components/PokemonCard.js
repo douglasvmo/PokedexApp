@@ -16,7 +16,11 @@ const PokemonCard = ({pokemon}) => {
       onPress={handlePressCard}
       Type="elevated"
       elevation={2}>
-      <Card.Title title={pokemon.name} right={RightContent} />
+      <Card.Title
+        titleStyle={{textTransform: 'capitalize'}}
+        title={pokemon.name}
+        right={RightContent}
+      />
     </S.PokemonCard>
   );
 };

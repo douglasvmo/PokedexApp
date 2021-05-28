@@ -1,16 +1,37 @@
 import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {View} from 'react-native';
+import {Switch, Text} from 'react-native-paper';
+import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../pages/Home';
-import Details from '../pages/Details'
-
+import {StateThemeContext} from '../context/ThemeContext';
+import Details from '../pages/Details';
 
 const Stack = createStackNavigator();
 
 export default function Navigation() {
+  const {toggleTheme, isThemeDark} = React.useContext(StateThemeContext);
+
+  const Header = () => {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Details" component={Details} />
-        </Stack.Navigator>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>Dark</Text>
+        <Switch value={isThemeDark} onValueChange={toggleTheme} />
+      </View>
     );
+  };
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerRight: () => <Header />,
+      }}>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Details" component={Details} />
+    </Stack.Navigator>
+  );
 }

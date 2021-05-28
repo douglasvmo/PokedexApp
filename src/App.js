@@ -9,7 +9,7 @@
 import React from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import Navigator from './navigation/navigator';
-import {Provider as PaperProvider} from 'react-native-paper';
+import {ThemeContext} from './context/ThemeContext';
 
 const App = () => {
   React.useEffect(() => {
@@ -17,9 +17,9 @@ const App = () => {
   }, []);
 
   return (
-    <PaperProvider>
+    <ThemeContext>
       <Navigator />
-    </PaperProvider>
+    </ThemeContext>
   );
 };
 

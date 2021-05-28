@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, FlatList} from 'react-native';
-import {Snackbar} from 'react-native-paper';
+import {Snackbar, ActivityIndicator} from 'react-native-paper';
 import usePokemons from '../hooks/usePokemons';
 import PokemonCard from '../components/PokemonCard';
 
@@ -14,6 +14,12 @@ const Home = () => {
     setShowMessageError(pokemonData.error ? true : false);
   }, [pokemonData.error]);
 
+  const renderFooter = () => {
+    if (!pokemonData.loading) return null;
+
+    return <ActivityIndicator animating={true} />;
+  };
+
   return (
     <React.Fragment>
       <SafeAreaView>
@@ -25,6 +31,7 @@ const Home = () => {
           keyExtractor={(item, index) => item.name + index.toString()}
           onEndReached={pokemonFunctions.requestNextPage}
           onEndReachedThreshold={0.1}
+          ListFooterComponent={renderFooter}
         />
       </SafeAreaView>
       <Snackbar visible={showMessageError} onDismiss={onDismissSnackBar}>

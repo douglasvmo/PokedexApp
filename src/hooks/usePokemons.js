@@ -12,6 +12,7 @@ const usePokemons = url => {
   const [pokemon, setPokemon] = React.useState();
   const [nextPage, setNextPage] = React.useState();
   const [loading, setLoading] = React.useState(false);
+  const [endList, setEndList] = React.useState(false);
   const [error, setError] = useState();
 
   React.useEffect(() => {
@@ -40,6 +41,11 @@ const usePokemons = url => {
   }, [request, enviroment]);
 
   const requestNextPage = () => {
+    if (!nextPage) {
+      setEndList(true);
+      return false;
+    }
+    
     setLoading(true);
     request
       .get(nextPage)
@@ -72,6 +78,7 @@ const usePokemons = url => {
       pokemonList,
       pokemon,
       loading,
+      endList,
       error,
     },
     pokemonFunctions: {

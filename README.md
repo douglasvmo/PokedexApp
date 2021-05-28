@@ -2,8 +2,8 @@
 
 React-native app to show all pokemons
 
-![](images/pokemonList.png width="200" height="400")
-![](images/pokemonDetails.png width="200" height="400")
+<img src="images/pokemonList.png" widht="200" height="400">
+<img src="images/pokemonDetails.png" widht="200" height="400">
 
 ### Instalar dependências e iniciar projeto
 

@@ -4,7 +4,7 @@ import {Snackbar, ActivityIndicator} from 'react-native-paper';
 import usePokemons from '../hooks/usePokemons';
 import PokemonCard from '../components/PokemonCard';
 
-const Home = ({navigation}) => {
+const Pokedex = ({navigation}) => {
   const [showMessageError, setShowMessageError] = React.useState(false);
   const {pokemonData, pokemonFunctions} = usePokemons();
 
@@ -45,4 +45,4 @@ const Home = ({navigation}) => {
   );
 };
 
-export default Home;
+export default Pokedex;

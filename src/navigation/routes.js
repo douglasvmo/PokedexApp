@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Switch} from 'react-native-paper';
 import {createStackNavigator} from '@react-navigation/stack';
-import Home from '../pages/Home';
+import Pokedex from '../pages/Pokedex';
 import {StateThemeContext} from '../context/ThemeContext';
 import Details from '../pages/Details';
 import * as S from '../styles/styles';
@@ -25,7 +25,7 @@ export default function Navigation() {
       screenOptions={{
         headerRight: () => <Header />,
       }}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Pokedex" component={Pokedex} />
       <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
   );

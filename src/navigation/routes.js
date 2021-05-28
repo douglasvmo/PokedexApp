@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {View} from 'react-native';
-import {Switch, Text} from 'react-native-paper';
+import {Switch} from 'react-native-paper';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../pages/Home';
 import {StateThemeContext} from '../context/ThemeContext';
 import Details from '../pages/Details';
+import * as S from '../styles/styles';
 
 const Stack = createStackNavigator();
 
@@ -13,15 +13,10 @@ export default function Navigation() {
 
   const Header = () => {
     return (
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>Dark</Text>
+      <S.ContainerSwitchTheme>
+        <S.TitleSwitchTheme>Dark</S.TitleSwitchTheme>
         <Switch value={isThemeDark} onValueChange={toggleTheme} />
-      </View>
+      </S.ContainerSwitchTheme>
     );
   };
 

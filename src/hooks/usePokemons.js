@@ -17,7 +17,6 @@ const usePokemons = url => {
 
   React.useEffect(() => {
     handleRequestType();
-    console.log('useEffect was executed');
   }, [requestPokemonList]);
 
   const handleRequestType = React.useCallback(() => {
@@ -45,7 +44,7 @@ const usePokemons = url => {
       setEndList(true);
       return false;
     }
-    
+
     setLoading(true);
     request
       .get(nextPage)

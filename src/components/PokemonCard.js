@@ -1,11 +1,12 @@
 import React from 'react';
 import {Avatar, Card} from 'react-native-paper';
-import * as S from './styles';
+import * as S from '../styles/styles';
 import * as RootNavigation from '../navigation/rootNavigation';
 
 const RightContent = props => <Avatar.Icon {...props} icon="arrow-right" />;
 
 const PokemonCard = ({pokemon}) => {
+
   const handlePressCard = () => {
     RootNavigation.navigate('Details', pokemon);
   };

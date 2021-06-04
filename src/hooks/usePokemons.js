@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {enviroment} from '../commons/Constants';
+import {services} from '../constants/services';
 import {useState} from 'react';
 
 const request = axios.create({
@@ -30,14 +30,14 @@ const usePokemons = url => {
   const requestPokemonList = React.useCallback(() => {
     setLoading(true);
     request
-      .get(enviroment.URL.pokemon)
+      .get(services.POKEMON_LIST_SERVICE)
       .then(({data}) => {
         setLoading(false);
         setNextPage(data.next);
         setPokemonList(prev => [...prev, ...data.results]);
       })
       .catch(handleError);
-  }, [request, enviroment]);
+  }, [request, services]);
 
   const requestNextPage = () => {
     if (!nextPage) {
@@ -65,7 +65,7 @@ const usePokemons = url => {
         setPokemon(data);
       })
       .catch(handleError);
-  }, [request, enviroment]);
+  }, [request, services]);
 
   const handleError = error => {
     setLoading(false);

@@ -20,18 +20,14 @@ const Pokedex = ({navigation}) => {
     return <ActivityIndicator animating={true} />;
   };
 
-  const handlePressCard = (pokemon) => {
-    navigation.navigate('Details', pokemon)
-  }
+  const renderPokemonCard = props => <PokemonCard {...props} />;
 
   return (
     <React.Fragment>
       <SafeAreaView>
         <FlatList
           data={pokemonData.pokemonList}
-          renderItem={({item}) => {
-            return <PokemonCard pokemon={item} handlePressCard={handlePressCard}/>;
-          }}
+          renderItem={renderPokemonCard}
           keyExtractor={(item, index) => item.name + index.toString()}
           onEndReached={pokemonFunctions.requestNextPage}
           onEndReachedThreshold={0.1}

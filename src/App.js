@@ -9,7 +9,7 @@
 import React from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import Navigator from './navigation/navigator';
-import {ThemeContext} from './context/ThemeContext';
+import {initialState, reducer, StateProvider} from './context/global';
 
 const App = () => {
   React.useEffect(() => {
@@ -17,9 +17,9 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeContext>
+    <StateProvider initialState={initialState} reducer={reducer}>
       <Navigator />
-    </ThemeContext>
+    </StateProvider>
   );
 };
 
